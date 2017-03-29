@@ -1,0 +1,99 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        xmlns:my="clr-namespace:WpfApplication2.Geometria_Plana"
+        xmlns:WPF="clr-namespace:Microsoft.TeamFoundation.Controls.WPF;assembly=Microsoft.TeamFoundation.Controls" x:Class="WpfApplication2.Main"
+        mc:Ignorable="d"
+        Title="Main" Height="802.5" Width="1399" WindowStyle="None" SizeToContent="Manual" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+
+
+    <Grid Margin="0,0,0,620" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <!-- Grid do menu principal -->
+        <Menu x:Name="menu" HorizontalAlignment="Stretch"  Background="#FF28463C" Margin="0,0,-10,52" Visibility="Hidden">
+            <!-- Botão pesquisar temas, com evento de preview mouse envolvido-->
+            <Button  x:Name="Menu" ToolTipService.IsEnabled="True" Background="#FF28463C"  Content="Pesquisar Temas" Foreground="#FFF9F9F9" FontWeight="SemiBold" FontSize="33.333" FontFamily="Segoe UI" Width="343" Height="79" BorderBrush="#FF28463C" PreviewMouseMove="Button_PreviewMouseMove" />
+            <Button BorderBrush="#FF28463C" Background="#FF28463C" Content="Conectar Controle" PreviewMouseMove="Button_PreviewMouseMove_1" Click="Button_Click_1" Foreground="#FFF7F7F7" FontSize="36" FontWeight="SemiBold" Width="382" Height="89"/>
+            <Button BorderBrush="#FF28463C" Background="#FF28463C" Content="Ajuda" Foreground="#FFF7F7F7" FontSize="33.333" FontWeight="SemiBold" Width="254" Height="89"/>
+            <Button x:Name="sair" BorderBrush="#FF28463C" Background="#FF28463C" Content="Sair" Foreground="#FFF7F7F7" FontSize="33.333" FontWeight="SemiBold" Width="309" Click="sair_Click" Height="79"/>
+
+        </Menu>
+        <!-- Grid onde estão os itens principais-->
+        <Grid  MouseLeave="Button_MouseLeave" x:Name="Grade_Proteção1" HorizontalAlignment="Left" Height="676" Margin="0,117,0,-619" VerticalAlignment="Top" Width="450" Background="#FF28463C" OpacityMask="Black" ShowGridLines="True" Visibility="Hidden">
+            <ListBox x:Name="listBox_Copy3" HorizontalAlignment="Stretch" Margin="0,315,0,0" VerticalAlignment="Top" FontSize="26.667" Height="389" FontWeight="SemiBold" Visibility="Hidden">
+
+                <ListBoxItem Content="Clindro" />
+                <ListBoxItem Content="Cone"/>
+                <ListBoxItem Content="Esfera"/>
+            </ListBox>
+            <Label x:Name="label" Content="Pesquisa de Temas Principais" HorizontalAlignment="Stretch" Height="59" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="33.333" Background="#FEFFFFFF" Foreground="#FF080707" FontWeight="Medium"/>
+            <ListBox x:Name="listBox" HorizontalAlignment="Stretch" Margin="0,74,0,0" VerticalAlignment="Top" FontSize="26.667" Height="177" FontWeight="SemiBold">
+
+                <ListBoxItem Content="Geometria Plana" PreviewMouseDown="ListBoxItem_PreviewMouseDown"/>
+                <ListBoxItem Content="Geometria Espacial" PreviewMouseDown="ListBoxItem_PreviewMouseDown_1"/>
+                <ListBoxItem PreviewMouseDown="ListBoxItem_PreviewMouseDown_2" Content="Poliedros"  />
+                <ListBoxItem PreviewMouseDown="ListBoxItem_PreviewMouseDown_3" Content="Corpos Redondos"/>
+
+
+
+            </ListBox>
+            <Label x:Name="Sub_Itens_Label" Content="Sub-Itens" HorizontalAlignment="Stretch" Height="59" Margin="0,251,0,0" VerticalAlignment="Top" FontSize="33.333" Background="#FEFFFFFF" Foreground="Black" FontWeight="Medium" Visibility="Hidden"/>
+            <ListBox x:Name="listBox_Copy1" HorizontalAlignment="Stretch" Margin="0,315,0,0" VerticalAlignment="Top" FontSize="26.667" Height="389" FontWeight="SemiBold" Visibility="Hidden">
+
+                <ListBoxItem Content="Retas Concorrentes" />
+                <ListBoxItem Content="Retas paralelas"/>
+                <ListBoxItem Content="Retas Perpendiculares"/>
+                <ListBoxItem Content="Retas Concorrentes em Planos Paralelos"/>
+                <ListBoxItem Content="Planos Concorrentes"/>
+
+
+            </ListBox>
+            <ListBox x:Name="listBox_Copy2" HorizontalAlignment="Stretch" Margin="0,315,0,0" VerticalAlignment="Top" FontSize="26.667" Height="389" FontWeight="SemiBold" Visibility="Hidden">
+
+                <ListBoxItem Content="Visão Geral dos Poliedros" />
+                <ListBoxItem Content="Prismas"/>
+                <ListBoxItem Content="Pirâmides"/>
+                <ListBoxItem Content="Paralelepípedo"/>
+                <ListBoxItem Content="Cubo"/>
+
+
+
+
+            </ListBox>
+            <ListBox x:Name="listBox_Copy" HorizontalAlignment="Stretch" Margin="0,315,0,0" VerticalAlignment="Top" FontSize="26.667" Height="389" FontWeight="SemiBold" Visibility="Hidden">
+
+                <ListBoxItem PreviewMouseDown="ListBoxItem_PreviewMouseDown_4" Content="Semelhança de Triângulos" />
+                <ListBoxItem Content="Polígonos Inscritos na Circuferência"/>
+                <ListBoxItem Content="Estudo do Triângulo"/>
+                <ListBoxItem Content="Estudo do Quadrado"/>
+                <ListBoxItem Content="Estudo do Retângulo"/>
+
+
+
+            </ListBox>
+        </Grid>
+
+        <Button x:Name="button" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="392,394,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid x:Name="dock" HorizontalAlignment="Right" Height="694" Margin="0,117,-44,-637" VerticalAlignment="Top" Width="1435">
+            <Viewbox x:Name="cx" HorizontalAlignment="Right" Height="684" Margin="0,190,-34,-170" VerticalAlignment="Top" Width="1391" OpacityMask="Black" Visibility="Collapsed">
+
+                <TextBlock MouseDown="texto_1_MouseDown" x:Name="texto_1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="60" Background="White" Height="95" Width="1080"><Run Text="Bem Vindo ao Sistema Geometry Easy!"/></TextBlock>
+            </Viewbox>
+            <Frame x:Name="frame"  HorizontalAlignment="Left" Margin="0,6,0,10" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"  Content="" IsEnabled="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+            <Button Click="button_sem_triang1_Click" Visibility="Hidden" x:Name="button_sem_triang1" Content="Avançar" HorizontalAlignment="Left" Margin="958,504,0,0" VerticalAlignment="Top" Width="323" Height="84" Background="#FF28463C" FontSize="40" FontWeight="Bold" BorderBrush="White" Foreground="White"/>
+            <Button Click="button_sem_triang2_Click" Visibility="Hidden" x:Name="button_sem_triang2" Content="Avançar" HorizontalAlignment="Left" Margin="954,420,0,0" VerticalAlignment="Top" Width="323" Height="84" Background="#FF28463C" FontSize="40" FontWeight="Bold" BorderBrush="White" Foreground="White"/>
+        </Grid>
+
+        <Viewbox x:Name="cx2" HorizontalAlignment="Right" Height="493" Margin="0,300,-24,-619" VerticalAlignment="Top" Width="1375" RenderTransformOrigin="0.477,0.509" OpacityMask="Black" Visibility="Collapsed">
+
+            <TextBlock x:Name="texto_2" TextWrapping="Wrap" FontSize="60" Background="White" Height="190" Width="1452" Visibility="Hidden"><Run Text="Clique em Pesquisar Temas ou em Conectar Controle"/></TextBlock>
+        </Viewbox>
+
+
+    </Grid>
+
+
+</Window>

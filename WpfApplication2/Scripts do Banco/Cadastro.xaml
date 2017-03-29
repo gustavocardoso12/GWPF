@@ -1,0 +1,144 @@
+﻿<Window x:Class="WpfApplication2.Cadastro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        mc:Ignorable="d"
+        Title="Cadastro" Height="492.144" Width="521.918" Loaded="Window_Loaded" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:GeasyDataSet x:Key="geasyDataSet"/>
+        <CollectionViewSource x:Key="tipoViewSource" Source="{Binding Tipo, Source={StaticResource geasyDataSet}}"/>
+        <CollectionViewSource x:Key="tipoUsuarioViewSource" Source="{Binding FK_Usuario_ToTable, Source={StaticResource tipoViewSource}}"/>
+        <CollectionViewSource x:Key="usuarioViewSource" Source="{Binding Usuario, Source={StaticResource geasyDataSet}}"/>
+    </Window.Resources>
+    <Grid Margin="0,0,-8,2">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="122,20,0,0" TextWrapping="Wrap" Text="Cadastre-se " VerticalAlignment="Top" FontSize="42.667" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="0.6" Margin="0,107,-2,0" VerticalAlignment="Top" Width="514"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="27,196,0,0" TextWrapping="Wrap" Text="Nome de Usuário" VerticalAlignment="Top" FontSize="16" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Grid x:Name="grid2" DataContext="{StaticResource tipoUsuarioViewSource}" HorizontalAlignment="Left" Margin="227,231,0,0" VerticalAlignment="Top" Width="296">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="26,242,0,0" TextWrapping="Wrap" Text="Senha do Usuário" VerticalAlignment="Top" FontSize="16" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Button x:Name="button1" Content="Cadastrar" HorizontalAlignment="Left" Margin="54,365,0,0" VerticalAlignment="Top" Width="398" Height="34" OpacityMask="#FFF7EAEA" FontSize="16" FontWeight="Medium" Click="button1_Click" BorderThickness="1">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF2FFF7"/>
+                    <GradientStop Color="#FFDCF8C7" Offset="0.276"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="29,281,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" FontSize="16" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Grid x:Name="grid4" DataContext="{StaticResource tipoUsuarioViewSource}" HorizontalAlignment="Left" Margin="188,315,0,0" VerticalAlignment="Top" Width="185">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="30,318,0,0" TextWrapping="Wrap" Text="CPF(Somente Números)" VerticalAlignment="Top" FontSize="16" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Grid x:Name="grid5" DataContext="{StaticResource tipoViewSource}" HorizontalAlignment="Left" Margin="189,94,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="30,153,0,0" TextWrapping="Wrap" Text="Tipo de Conta" VerticalAlignment="Top" FontSize="16" Foreground="#FF28463C" FontWeight="Bold"/>
+        <Grid x:Name="grid6" DataContext="{StaticResource usuarioViewSource}" HorizontalAlignment="Left" Margin="54,356,0,0" VerticalAlignment="Top" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="cod tipo:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="cod_tipoTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding cod_tipo, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid7" DataContext="{StaticResource tipoViewSource}" HorizontalAlignment="Left" Margin="225,156,0,0" VerticalAlignment="Top" Width="296">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ComboBox x:Name="descricaoComboBox" DisplayMemberPath="descricao" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="-9,0,-116,6" Grid.Row="0" VerticalAlignment="Center" Width="255" Text="" IsTextSearchEnabled="False" SelectionChanged="descricaoComboBox_SelectionChanged" Grid.ColumnSpan="2" FontSize="16">
+                <ComboBox.ContextMenu>
+                    <ContextMenu/>
+                </ComboBox.ContextMenu>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+        </Grid>
+        <Grid x:Name="grid1" DataContext="{StaticResource usuarioViewSource}" HorizontalAlignment="Left" Margin="221,199,0,0" VerticalAlignment="Top" Width="267">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="nome_UsuarioTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="-4,0,-147,6" Grid.Row="0" Text="{Binding Nome_Usuario, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="267" FontSize="16"/>
+        </Grid>
+        <Grid x:Name="grid3" DataContext="{StaticResource usuarioViewSource}" HorizontalAlignment="Left" Margin="229,237,0,0" VerticalAlignment="Top" Width="253">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="senha_UsuarioTextBox" HorizontalAlignment="Left" Height="23" Margin="-11,3,-97,3" Grid.Row="0" Text="{Binding Senha_Usuario, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="264" Grid.ColumnSpan="2" FontSize="16"/>
+        </Grid>
+        <Grid x:Name="grid8" DataContext="{StaticResource usuarioViewSource}" HorizontalAlignment="Left" Margin="225,278,0,0" VerticalAlignment="Top" Width="257">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="-7,3,-127,3" Grid.Row="0" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="266" Grid.ColumnSpan="2" FontSize="16"/>
+        </Grid>
+        <Grid x:Name="grid9" DataContext="{StaticResource usuarioViewSource}" HorizontalAlignment="Left" Margin="229,312,0,0" VerticalAlignment="Top" Width="268">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="cPFTextBox" HorizontalAlignment="Left" Height="23" Margin="-10,7,-134,-1" Grid.Row="0" Text="{Binding CPF, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="268" Grid.ColumnSpan="2" FontSize="16"/>
+        </Grid>
+        <Button x:Name="button1_Copy" Content="Voltar ao Login" HorizontalAlignment="Left" Margin="54,424,0,0" VerticalAlignment="Top" Width="398" Height="34" OpacityMask="#FFF7EAEA" FontSize="16" FontWeight="Medium" Click="button1_Copy_Click"  BorderThickness="1">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF2FFF7"/>
+                    <GradientStop Color="#FFDCF8C7" Offset="0.276"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
